@@ -20,14 +20,17 @@ if [[ ! -z $YUM ]]; then
   sudo yum install make -y
   sudo yum install cmake -y
   sudo yum install tmux -y
+  sudo yum install guake -y
 elif [[ ! -z $APT ]]; then
   sudo apt-get install make -y  
   sudo apt-get install cmake -y
   sudo apt-get install tmux -y
+  sudo apt-get install guake -y
 elif [[ ! -z $DNF ]]; then 
   sudo dnf install make -y
   sudo dnf install cmake -y
   sudo dnf install tmux -y
+  sudo dnf install guake -y
 else
   echo "Can't determine package manager to install tmux / neovim"
   exit 0
@@ -43,14 +46,24 @@ git config --global http.sslverify ${INITIAL}
 cd neovim
 sudo rm -r .build
 sudo make install
+cd ..
 
 # Set alias for nvim <- vim
 read -p "Alias vim as nvim? " USER_IN
 case $USER_IN in
   [Yy]* ) echo "Removing existing alias"
-          unalias vim 2 > /dev/null
+          unalias vim 2>/dev/null
           echo "Creating new alias"
           echo "alias vim=\"nvim\"" >> ~/.bashrc;;
+  [Nn]* ) ;;
+  * ) ;;
+esac
+
+# guake preferences
+read -p "Use guake preferences? " USER_IN
+case $USER_IN in
+  [Yy]* ) echo "Loading guake.conf"
+          guake --load-preferences ./guake.conf;;
   [Nn]* ) ;;
   * ) ;;
 esac
