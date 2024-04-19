@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/bash
 # Set alias for nvim <- vim
 read -p "Remove existing nvim / tmux config files? " USER_IN
 case $USER_IN in
@@ -63,7 +63,7 @@ esac
 read -p "Use guake preferences? " USER_IN
 case $USER_IN in
   [Yy]* ) echo "Loading guake.conf"
-          guake --load-preferences ./guake.conf;;
+          guake --restore-preferences ./guake.conf;;
   [Nn]* ) ;;
   * ) ;;
 esac
