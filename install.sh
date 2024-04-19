@@ -48,6 +48,9 @@ sudo rm -r .build
 sudo make install
 cd ..
 
+mkdir ~/.local/share/fonts
+cp SauceCodeProNerdFontMono-Regular.ttf ~/.local/share/fonts/
+
 # Set alias for nvim <- vim
 read -p "Alias vim as nvim? " USER_IN
 case $USER_IN in
