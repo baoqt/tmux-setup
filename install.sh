@@ -9,8 +9,8 @@ case $USER_IN in
   * ) ;;
 esac
 
-unzip nvim.zip -d ~/.config
-unzip tmux.zip -d ~/.config
+unzip nvim.zip -d ~/.config/
+unzip tmux.zip -d ~/.config/
 
 YUM=$(which yum)
 APT=$(which apt-get)
@@ -36,17 +36,22 @@ else
   exit 0
 fi
 
-INITIAL=$(git config --global http.sslverify)
+read -p "(Re)Build nvim? " USER_IN
+case $USER_IN in
+  [Yy]* ) INITIAL=$(git config --global http.sslverify)
 
-git config --global http.sslverify false
-git clone https://github.com/neovim/neovim.git
-git -C neovim checkout v0.9.5
-git config --global http.sslverify ${INITIAL}
+          git config --global http.sslverify false
+          git clone https://github.com/neovim/neovim.git
+          git -C neovim checkout v0.9.5
+          git config --global http.sslverify ${INITIAL}
 
-cd neovim
-sudo rm -r .build
-sudo make install
-cd ..
+          cd neovim
+          sudo rm -r .build
+          sudo make install
+          cd ..;;
+  [Nn]* ) ;;
+  * ) ;;
+esac
 
 mkdir ~/.local/share/fonts
 cp SauceCodeProNerdFontMono-Regular.ttf ~/.local/share/fonts/
