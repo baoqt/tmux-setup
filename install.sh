@@ -4,7 +4,7 @@ read -p "Remove existing nvim / tmux config files? " USER_IN
 case $USER_IN in
   [Yy]* ) echo "Removing existing files"
           rm -rf ~/.config/nvim/
-          rm -rf ~/.config/tmux
+          rm -rf ~/.config/tmux;;
   [Nn]* ) ;;
   * ) ;;
 esac
