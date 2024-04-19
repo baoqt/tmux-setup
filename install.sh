@@ -1,3 +1,14 @@
+#!/usr/bin/sh
+# Set alias for nvim <- vim
+read -p "Remove existing nvim / tmux config files? " USER_IN
+case $USER_IN in
+  [Yy]* ) echo "Removing existing files"
+          rm -rf ~/.config/nvim/
+          rm -rf ~/.config/tmux
+  [Nn]* ) ;;
+  * ) ;;
+esac
+
 unzip nvim.zip -d ~/.config
 unzip tmux.zip -d ~/.config
 
@@ -16,7 +27,7 @@ elif [[ ! -z $APT ]]; then
 elif [[ ! -z $DNF ]]; then 
   sudo dnf install make -y
   sudo dnf install cmake -y
-  sudo dnf install neovim -y
+  sudo dnf install tmux -y
 else
   echo "Can't determine package manager to install tmux / neovim"
   exit 0
