@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#! /usr/bin/bash
 # Set alias for nvim <- vim
 read -p "Remove existing nvim / tmux config files? " USER_IN
 case $USER_IN in
