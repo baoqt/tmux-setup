@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 # Set alias for nvim <- vim
-read -p "Remove existing nvim / tmux config files? " USER_IN
+read -p "Remove existing nvim / tmux config files? (y/n) " USER_IN
 case $USER_IN in
   [Yy]* ) echo "Removing existing files"
           rm -rf ~/.config/nvim/
@@ -28,7 +28,7 @@ else
   exit 0
 fi
 
-read -p "(Re)Build nvim? " USER_IN
+read -p "(Re)Build nvim? (y/n) " USER_IN
 case $USER_IN in
   [Yy]* ) INITIAL=$(git config --global http.sslverify)
 
@@ -49,12 +49,25 @@ mkdir ~/.local/share/fonts
 cp SauceCodeProNerdFontMono-Regular.ttf ~/.local/share/fonts/
 
 # Set alias for nvim <- vim
-read -p "Alias vim as nvim? " USER_IN
+read -p "Alias vim as nvim? (y/n) " USER_IN
 case $USER_IN in
   [Yy]* ) echo "Removing existing alias"
           unalias vim 2>/dev/null
           echo "Creating new alias"
           echo "alias vim=\"nvim\"" >> ~/.bashrc;;
+  [Nn]* ) ;;
+  * ) ;;
+esac
+
+# Copy gnome extension files
+read -p "Use gnome extension files? (y/n) " USER_IN
+case $USER_IN in
+  [Yy]* ) if ! [ -d ~/.local/share/gnome-shell/extensions ]; then
+            mkdir -p ~/.local/share/gnome-shell/extensions
+          fi
+          echo "Extracting files to ~/.local/share/gnome-shell/extensions"
+          unzip gnome-extensions.zip -d ~/.local/share/gnome-shell/extensions
+          echo "Install gnome extensions manager and manually enable the extracted extensions"
   [Nn]* ) ;;
   * ) ;;
 esac
