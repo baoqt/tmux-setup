@@ -58,16 +58,3 @@ case $USER_IN in
   [Nn]* ) ;;
   * ) ;;
 esac
-
-# Copy gnome extension files
-read -p "Use gnome extension files? (y/n) " USER_IN
-case $USER_IN in
-  [Yy]* ) if ! [ -d ~/.local/share/gnome-shell/extensions ]; then
-            mkdir -p ~/.local/share/gnome-shell/extensions
-          fi
-          echo "Extracting files to ~/.local/share/gnome-shell/extensions"
-          unzip gnome-extensions.zip -d ~/.local/share/gnome-shell/extensions
-          echo "Install gnome extensions manager and manually enable the extracted extensions"
-  [Nn]* ) ;;
-  * ) ;;
-esac
